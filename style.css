@@ -11,9 +11,7 @@
     justify-content: space-around;
 }
 
-.content2 {
-    background-color: #fc9a88;
-}
+
 
 div {
 
@@ -70,4 +68,25 @@ div {
    
     flex: auto;
 
+}
+
+.content2 {
+    background-color: #d8cdcd;
+    display: flex;
+    justify-content: space-around;
+}
+
+#tbl1 {
+    background-color: #f7e3a5;
+    flex: auto;
+}
+
+#tbl2 {
+    background-color: #98fdfd;
+    flex: auto;
+}
+
+#tbl3 {
+    background-color: #feb8b8;
+    flex: auto;
 }
