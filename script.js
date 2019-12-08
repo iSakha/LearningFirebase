@@ -153,7 +153,7 @@ function showItem(data) {
 
     let fruits = data.val();
     //console.log(fruits);
-    let keys = Object.keys(fruits);
+    //let keys = Object.keys(fruits);
     //console.log(keys);
     let n = mySelect.options.selectedIndex;
     let k = mySelect[n].text
@@ -170,18 +170,83 @@ function errData(err) {
     console.log(err);
 }
 
+
+function prev(data) {
+
+    mySelectId = 'keysfrm2'
+    let mySelect = document.getElementById(mySelectId);
+    let txtName = document.getElementById(myNameId);
+    let txtColor = document.getElementById(myColorId);
+    let txtQty = document.getElementById(myQtyId);
+
+    let fruits = data.val();
+
+    let n = mySelect.options.selectedIndex - 1;
+    
+    if (n < 0 ){
+    alert ('This is first item!')
+    } else {
+        let k = mySelect[n].text
+
+        txtName.value = fruits[k].name;
+        txtColor.value = fruits[k].color;
+        txtQty.value = fruits[k].quantity;
+    
+        mySelect.selectedIndex = n;
+    }
+
+}
+
+
+function next(data) {
+
+    mySelectId = 'keysfrm2'
+    let mySelect = document.getElementById(mySelectId);
+    let txtName = document.getElementById(myNameId);
+    let txtColor = document.getElementById(myColorId);
+    let txtQty = document.getElementById(myQtyId);
+
+    let fruits = data.val();
+
+    let n = mySelect.options.selectedIndex + 1;
+    console.log(n);
+    if (n > mySelect.options.length - 1) {
+        alert ('This is last item!')
+    } else {
+        let k = mySelect[n].text
+
+        txtName.value = fruits[k].name;
+        txtColor.value = fruits[k].color;
+        txtQty.value = fruits[k].quantity;
+    
+        mySelect.selectedIndex = n;
+    }
+
+
+
+}
+
+
+
+
 let mySelectId = '';
 let myNameId = '';
 let myColorId = '';
 let myQtyId = '';
+//*********************************************************************************
 
-//==================== Form 2 =========================
+//====================              Form 2                  =======================
+
+//*********************************************************************************
 
 let btnGetKeys2 = document.getElementById('btn1frm2');
 let btnShowItem2 = document.getElementById('btn2frm2');
 let btnClear2 = document.getElementById('btn3frm2');
 let btnPrev = document.getElementById('btn4frm2');
 let btnNext = document.getElementById('btn5frm2');
+
+
+
 
 btnGetKeys2.addEventListener('click', () => {
 
@@ -192,6 +257,8 @@ btnGetKeys2.addEventListener('click', () => {
     ref.on('value', getKeys, errData);
 
 })
+
+
 
 btnShowItem2.addEventListener('click', () => {
 
@@ -208,6 +275,8 @@ btnShowItem2.addEventListener('click', () => {
     // console.log(mySelect[n].text);
 
 })
+
+
 
 btnClear2.addEventListener('click', () => {
 
@@ -228,7 +297,25 @@ btnClear2.addEventListener('click', () => {
 
 })
 
-//==================== Form 3 =========================
+
+btnPrev.addEventListener('click', () => {
+    var database = firebase.database();
+    var ref = database.ref().child('Learning');
+    ref.on('value', prev, errData);
+});
+
+btnNext.addEventListener('click', () => {
+    var database = firebase.database();
+    var ref = database.ref().child('Learning');
+    ref.on('value', next, errData);
+});
+
+//*********************************************************************************
+
+//====================              Form 3                  =======================
+
+//*********************************************************************************
+
 
 let btnGetKeys3 = document.getElementById('btn1frm3');
 let btnShowItem3 = document.getElementById('btn2frm3');
