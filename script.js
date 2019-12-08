@@ -223,11 +223,7 @@ function next(data) {
     }
 
 
-
 }
-
-
-
 
 let mySelectId = '';
 let myNameId = '';
@@ -320,6 +316,8 @@ btnNext.addEventListener('click', () => {
 let btnGetKeys3 = document.getElementById('btn1frm3');
 let btnShowItem3 = document.getElementById('btn2frm3');
 let btnClear3 = document.getElementById('btn3frm3');
+let btnAdd = document.getElementById('btn4frm3');
+let btnRmv = document.getElementById('btn5frm3');
 
 btnGetKeys3.addEventListener('click', () => {
 
@@ -363,5 +361,38 @@ btnClear3.addEventListener('click', () => {
         //console.log(mySelect.options.length);
         opt[mySelect.options.length - 1] = null;
     }
+
+})
+
+btnAdd.addEventListener('click', () => {
+
+    let txtName = document.getElementById('txt1frm3');
+    let txtColor = document.getElementById('txt2frm3');
+    let txtQty = document.getElementById('txt3frm3');
+
+    let database = firebase.database();
+    let fruitRef = database.ref().child('Learning');
+
+    // console.log (fruitRef);
+    let key = fruitRef.push().key;
+    let update = {};
+    update[key] = {
+        name: txtName.value,
+        color: txtColor.value,
+        quantity: txtQty.value,
+    } 
+    let result = fruitRef.update(update);  
+})
+
+btnRmv.addEventListener('click', () => {
+
+    let mySelect = document.getElementById('keysfrm3');
+    let n = mySelect.options.selectedIndex ;
+    let selKey= mySelect.options[n].value;
+    let pathToDelete = 'Learning/' + selKey
+
+    var ref = firebase.database().ref(pathToDelete);
+    ref.remove();
+
 
 })
