@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>MyHelper for Firebase</title>
+    <p></p>
+    <p><a href="http://console.firebase.google.com/project/third-ac40d/database/third-ac40d/data/Learning">Google
+            firebase</a></p>
+
+    <!-- =========== Скрипт для работы с Firebase ================/-->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+</head>
+
+<body>
+
+    <div id="content">
+
+        <div class="content1">
+            <!-- ===================== Form 1 ==============================/-->
+            <div id="frm1">
+
+                <h3 id="writeHeader">Write data to database</h3>
+                <p>'Set button' set data to 'Learning/fruit'</p>
+                <p>'Push button' add data to 'Learning'</p>
+
+            </div>
+            <!-- ===================== Form 2 ==============================/-->
+            <div id="frm2">
+
+                <div>
+                    <h3 id="readHeader">Read data from database</h3>
+                    <p>Select key</p>
+
+                    <select id="keysfrm2">
+
+                    </select>
+
+                    <p></p>
+                    <input type="text" id="txt1frm2" placeholder="name">
+
+                    <p></p>
+                    <input type="text" id="txt2frm2" placeholder="color">
+                    <p></p>
+                    <input type="text" id="txt3frm2" placeholder="quantity">
+                </div>
+                <p></p>
+                <div>
+                    <p></p>
+                    <button class="btnfrm" id="btn1frm2">Get keys</button>
+                    <button class="btnfrm" id="btn2frm2">Show item</button>
+                    <button class="btnfrm" id="btn3frm2">Clear</button>
+                </div>
+                <p></p>
+                <div>
+                    <button class="btnfrm" id="btn4frm2">Prev</button>
+                    <button class="btnfrm" id="btn5frm2">Next</button>
+                </div>
+
+
+
+            </div>
+            <!-- ===================== Form 3 ==============================/-->
+            <div id="frm3">
+
+                <div>
+                    <h3 id="viewHeader">View , add and remove data</h3>
+
+                    <p>Select key</p>
+
+                    <select id="keysfrm3">
+
+                    </select>
+
+                    <p></p>
+                    <input type="text" id="txt1frm3" placeholder="name">
+
+                    <p></p>
+                    <input type="text" id="txt2frm3" placeholder="color">
+                    <p></p>
+                    <input type="text" id="txt3frm3" placeholder="quantity">
+                </div>
+                <p></p>
+                <div>
+                    <p></p>
+                    <button class="btnfrm" id="btn1frm3">Get keys</button>
+                    <button class="btnfrm" id="btn2frm3">Show item</button>
+                    <button class="btnfrm" id="btn3frm3">Clear</button>
+                </div>
+                <p></p>
+                <div>
+                    <button id="btn4frm3">ADD item</button>
+                    <button id="btn5frm3">REMOVE item</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content2">
+
+        </div>
+
+
+    </div>
+
+    <!-- =========== Скрипты для работы с Firebase ================/-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0//firebase.js"></script>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
