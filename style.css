@@ -37,6 +37,10 @@ div {
     justify-content: space-around;
 }
 
+#btn1frm2, #btn2frm2, #btn3frm2 {
+    width: 100px;
+}
+
 #btnS, #btnP {
     width: 80px;
 }
@@ -53,13 +57,21 @@ div {
     width: 180px;
 }
 
+#frm2_2, #frm2_3 {
+    display: flex;
+    justify-content: space-around;
+}
+
 .btnfrm {
     width: 80px;
 }
 
+#btn1frm3, #btn2frm3, #btn3frm3 {
+    width: 100px;
+}
 
 #btn4frm3, #btn5frm3 {
-    width: 100px;
+    width: 140px;
 }
 
 #frm3 {
@@ -70,6 +82,11 @@ div {
 
 }
 
+#frm3_2, #frm3_3 {
+    display: flex;
+    justify-content: space-around; 
+}
+
 .content2 {
     background-color: #d8cdcd;
     display: flex;
@@ -78,15 +95,34 @@ div {
 
 #tbl1 {
     background-color: #f7e3a5;
-    flex: auto;
+    flex: 1;
 }
 
 #tbl2 {
     background-color: #98fdfd;
-    flex: auto;
+    flex: 1;
 }
 
 #tbl3 {
     background-color: #feb8b8;
-    flex: auto;
+    flex: 1;
+}
+
+th, td {
+	border: 1px solid black;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+    border-collapse: collapse;
+    width: 100px;
+}
+
+#btnName, #btnColor, #btnQty, #btnLoad {
+    width: 115px;
+    height: 22px;
+}
+
+#btntbl {
+    display: flex;
+    justify-content: start;
 }

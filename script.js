@@ -225,6 +225,29 @@ function next(data) {
 
 }
 
+function createTable() {
+
+    let table1 = document.createElement('table');  
+    let parentTable = document.getElementById('table1');
+
+
+    let myRow = document.createElement('tr');
+    //console.log(myRow);
+    let myCell = document.createElement('th');
+    myCell.innerHTML = 'Name';
+    myRow.appendChild(myCell);
+    myCell = document.createElement('th');
+    myCell.innerHTML = 'Color';
+    myRow.appendChild(myCell);
+    myCell = document.createElement('th');
+    myCell.innerHTML = 'Quantity';
+    myRow.appendChild(myCell);
+
+    table1.appendChild(myRow);
+    parentTable.appendChild(table1);
+    
+    }
+
 let mySelectId = '';
 let myNameId = '';
 let myColorId = '';
@@ -396,3 +419,32 @@ btnRmv.addEventListener('click', () => {
 
 
 })
+
+
+let btnName = document.createElement('button');
+let parBtnName = document.getElementById('btntbl');
+let btnColor = document.createElement('button');
+let parBtnColor = document.getElementById('btntbl');
+let btnQty = document.createElement('button');
+let parBtnQty = document.getElementById('btntbl');
+
+parBtnName.appendChild(btnName);
+parBtnColor.appendChild(btnColor);
+parBtnQty.appendChild(btnQty);
+
+btnName.id = 'btnName';
+btnName.innerHTML = 'Name';
+btnColor.id = 'btnColor';
+btnColor.innerHTML = 'Color';
+btnQty.id = 'btnQty';
+btnQty.innerHTML = 'Quantity';
+
+createTable()
+
+
+
+let btnLoad = document.createElement('button');
+let parBtnLoad = document.getElementById('table1');
+parBtnLoad.appendChild(btnLoad);
+btnLoad.innerHTML = 'Load data';
+btnLoad.id = 'btnLoad';
