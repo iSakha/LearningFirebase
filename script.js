@@ -14,6 +14,13 @@ let firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+let mySelectId = '';
+let myNameId = '';
+let myColorId = '';
+let myQtyId = '';
+
+let table1RowsQty = 0;
+
 //================= Create form 1 =========================
 
 let form1 = document.createElement('form');
@@ -182,16 +189,16 @@ function prev(data) {
     let fruits = data.val();
 
     let n = mySelect.options.selectedIndex - 1;
-    
-    if (n < 0 ){
-    alert ('This is first item!')
+
+    if (n < 0) {
+        alert('This is first item!')
     } else {
         let k = mySelect[n].text
 
         txtName.value = fruits[k].name;
         txtColor.value = fruits[k].color;
         txtQty.value = fruits[k].quantity;
-    
+
         mySelect.selectedIndex = n;
     }
 
@@ -211,47 +218,92 @@ function next(data) {
     let n = mySelect.options.selectedIndex + 1;
     console.log(n);
     if (n > mySelect.options.length - 1) {
-        alert ('This is last item!')
+        alert('This is last item!')
     } else {
         let k = mySelect[n].text
 
         txtName.value = fruits[k].name;
         txtColor.value = fruits[k].color;
         txtQty.value = fruits[k].quantity;
-    
+
         mySelect.selectedIndex = n;
     }
 
 
 }
 
-function createTable() {
+function createTable(data) {
 
-    let table1 = document.createElement('table');  
-    let parentTable = document.getElementById('table1');
+    let array = new Array();
 
+    var fruits = data.val();
+    console.log(fruits);
+    var keys = Object.keys(fruits);
+    console.log(keys);
 
-    let myRow = document.createElement('tr');
-    //console.log(myRow);
-    let myCell = document.createElement('th');
-    myCell.innerHTML = 'Name';
-    myRow.appendChild(myCell);
-    myCell = document.createElement('th');
-    myCell.innerHTML = 'Color';
-    myRow.appendChild(myCell);
-    myCell = document.createElement('th');
-    myCell.innerHTML = 'Quantity';
-    myRow.appendChild(myCell);
+    if (table1RowsQty > 0) { 
 
-    table1.appendChild(myRow);
-    parentTable.appendChild(table1);
-    
+        console.log('remove table');
+        myTable1.remove();        
+
     }
 
-let mySelectId = '';
-let myNameId = '';
-let myColorId = '';
-let myQtyId = '';
+    console.log('create table');
+
+        let table1 = document.createElement('table');
+        let parentTable = document.getElementById('table1');
+        table1.id = 'myTable1';
+    
+        console.log('rows qty: ' + table1.rows.length);
+    
+        let myRow = document.createElement('tr');
+        //console.log(myRow);
+        let myCell = document.createElement('th');
+        myCell.innerHTML = 'key';
+        myRow.appendChild(myCell);
+        myCell = document.createElement('th');
+        myCell.innerHTML = 'Name';
+        myRow.appendChild(myCell);
+        myCell = document.createElement('th');
+        myCell.innerHTML = 'Color';
+        myRow.appendChild(myCell);
+        myCell = document.createElement('th');
+        myCell.innerHTML = 'Quantity';
+        myRow.appendChild(myCell);
+    
+        table1.appendChild(myRow);
+        parentTable.appendChild(table1);
+    
+        for (var i = 0; i < keys.length; i++) {
+    
+            var k = keys[i];
+    
+            array[0] = k;
+            array[1] = fruits[k].name;
+            array[2] = fruits[k].color;
+            array[3] = fruits[k].quantity;
+    
+            console.log(array);
+    
+            // create a new row
+            var newRow = table1.insertRow(i + 1);
+    
+            for (var j = 0; j < 4; j++) {
+    
+                // create a new cell
+                var cell = newRow.insertCell(j);
+    
+                // add value to the cell
+                cell.innerHTML = array[j];
+            }
+    
+        }
+
+    table1RowsQty = table1.rows.length;
+        
+    }
+
+
 //*********************************************************************************
 
 //====================              Form 2                  =======================
@@ -403,15 +455,15 @@ btnAdd.addEventListener('click', () => {
         name: txtName.value,
         color: txtColor.value,
         quantity: txtQty.value,
-    } 
-    let result = fruitRef.update(update);  
+    }
+    let result = fruitRef.update(update);
 })
 
 btnRmv.addEventListener('click', () => {
 
     let mySelect = document.getElementById('keysfrm3');
-    let n = mySelect.options.selectedIndex ;
-    let selKey= mySelect.options[n].value;
+    let n = mySelect.options.selectedIndex;
+    let selKey = mySelect.options[n].value;
     let pathToDelete = 'Learning/' + selKey
 
     var ref = firebase.database().ref(pathToDelete);
@@ -439,7 +491,7 @@ btnColor.innerHTML = 'Color';
 btnQty.id = 'btnQty';
 btnQty.innerHTML = 'Quantity';
 
-createTable()
+
 
 
 
@@ -448,3 +500,11 @@ let parBtnLoad = document.getElementById('table1');
 parBtnLoad.appendChild(btnLoad);
 btnLoad.innerHTML = 'Load data';
 btnLoad.id = 'btnLoad';
+
+btnLoad.addEventListener('click', () => {
+
+    var database = firebase.database();
+    var ref = database.ref().child('Learning');
+    ref.on('value', createTable, errData);
+
+})
