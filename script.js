@@ -508,3 +508,20 @@ btnLoad.addEventListener('click', () => {
     ref.on('value', createTable, errData);
 
 })
+
+btnName.addEventListener('click', () => {
+
+    var database = firebase.database();
+    var ref = database.ref().child('Learning').orderByChild('name');
+    ref.once('value', function(snapshot) {
+console.log('key: ' + JSON.stringify(snapshot.key));
+console.log('val: ' + JSON.stringify(snapshot.val()));
+console.log('numChildren: ' + JSON.stringify(snapshot.numChildren()));
+
+snapshot.forEach(function(item) {
+    console.log(JSON.stringify(item.val()))
+})
+
+    });
+
+})
